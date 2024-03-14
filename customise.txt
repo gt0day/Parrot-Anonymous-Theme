@@ -1,0 +1,173 @@
+--==[ Parrot OS MATE ]==--
+* Login as root and same steps for theme
+- Control Center > Login Window > Users > Allow manuale login: True
+- reboot & Allow manuale login: OFF
+
+# Desktop #
+1) Right click on bottom panel > Properties
+    # General
+    - Orientation: Right
+    - Size: 26
+    
+    # Background
+    - Solid Color: Dark
+
+2) Right click on top panel > Properties
+    # General 
+    - Orientation: Bottom
+    - Size: 26
+    
+    # Background
+    - Solid Color: Dark
+    
+    # Other
+    - Right click on system monitor > Preferences > Check All & width: 60
+    - Right click on sound > Sound Preferences > Input > Input Volume: Mute
+    - Change Clock Format
+    - Change Design And Lock To Panel 
+    
+3) Right click on parrot > Properties 
+    - Change name to Ghost Security
+    
+4) dconf-editor
+    # sudo cp logo.png /usr/share/icons/gtsec.png
+    - org > mate > panel > menubar > icon-name > Use default value: OFF & Custom value: gtsec
+    - com > solus-project > brisk-menu > dark-theme: True 
+    
+# Control Center #
+* Copy Pictures To Pictures Folder
+1) Login Window
+    --==[ Root ]==--
+    - Background: /home/anonymous/Pictures/lock-screen.jpg
+    - Draw user backgrounds: OFF
+    - Draw a grid: OFF
+    - GTK Theme: Icy-Dark
+    - Icon Theme: ara
+    - Mouse Pointer: Bibata-Modern-Classic
+    - Bottom Left: Empty
+    
+2) Keyboard
+    # Layouts
+    - Add: Lebanon
+    - Options > Switching to another layout: Alt+Shift
+    
+3) Firewall Configuration
+    - Home: ON
+
+4) MATE Tweak
+    # Desktop
+    - Uncheck Computer, Home, Trash, Mounted Volumes
+    # Windows
+    - Appearance: Left(with menu)
+
+5) Popup Notifications
+    - Theme: Coco
+    
+6) Screensaver
+    - Theme: Picture Folder
+    - Background picture for lockscreen: lockscreen.jpg
+    
+7) About Me 
+- Logo: logo.png
+    
+8) Change Theme
+    --==[ Root ]==--
+    # Theme
+    - Install: Kripton-v40.tar.xz
+    - Install: Bibata-Modern-Classic.tar.gz
+    - Customise: Change The Theme
+    # Background
+    - +Add: background.jpg
+
+# Other Settings    
+1) Terminal
+    --==[ User Terminal ]==--
+    - Uncheck Show Menubar
+    - Profiles > Profile Preferences
+    # General
+    - Profile name: Ghost Security
+    - Allow bold text: True
+    - Show menubar by default: false
+    - Use custome default terminal size: 120C& 26R
+    # Title and command
+    - Initial title: Ghost Security & Keep initial title
+    # Scrolling
+    - Scrollbar: Disabled
+    
+    --==[ Root Terminal ]==--
+    - Right click on Applications > Edit Menus > System Tools > Root Terminal > Command: menuexecg mate-terminal
+    - Theme: Same User Terminal
+    
+    # Install Oh My Zsh (https://ohmyz.sh/) 
+    # user & root
+    - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Change theme
+    (user & root)
+    - sudo nano /root/.bashrc > add in the bottom (clear zsh)
+    - nano ~/.bashrc > zsh
+    - nano ~/.zshrc
+    - ZSH_THEME="darkblood" & Root: "arrow"
+
+    # Adding Auto Complete
+    - git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    - git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    - git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+    # Enable Auto Plugins
+    - sudo nano ~/.zshrc
+    * Find plugins=(git)
+    - plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
+    # darkblood
+    # afowler
+    # cypher
+ 
+2) Hostname
+- hostnamectl
+- sudo hostnamectl set-hostname anonymous 
+- sudo nano /etc/hostname: anonymous
+- sudo nano /etc/hosts: 127.0.0.1 anonymous
+- sudo cp /etc/os-release /etc/os-release.backup
+- sudo nano /etc/os-release
+
+PRETTY_NAME="Ghost Security 6.0 (lorikeet)"
+NAME="Ghost Security"
+VERSION_ID="6.0"
+VERSION="6.0 (lorikeet)"
+VERSION_CODENAME=lory
+ID=debian
+
+3) Parrot Commands
+- sudo nano /usr/bin/menuexecg > ParrotSec: Ghost Security
+- sudo nano /usr/bin/menuexec: figlet "Ghost Security" -f digital
+- sudo nano /usr/bin/parrot-exec: figlet "Ghost Security" -f digital
+- sudo nano /usr/bin/parrot-ls: figlet "Ghost Security" -f digital & Delete "\nPlease Report..."
+- sudo cp /usr/bin/parrot-ls /usr/bin/ghost-ls
+- sudo chmod +x /usr/bin/ghost-ls
+- sudo nano /usr/bin/parrot-upgrade: 
+- sudo mv /usr/bin/parrot-upgrade /usr/bin/ghost-upgrade
+- sudo chmod +x /usr/bin/ghost-upgrade
+ 
+4) Anonymous Grub Picture 
+- sudo cp -r grub-16x9.png /usr/share/desktop-base/active-theme/grub/grub-16x9.png
+- sudo cp -r grub-4x3.png /usr/share/desktop-base/active-theme/grub/grub-4x3.png
+- sudo update-grub2
+    
+    
+5) Anonymous Mask Boot Loading
+- unzip mask.zip
+- sudo mv mask/ /usr/share/plymouth/themes/
+- sudo plymouth-set-default-theme mask -R
+- sudo nano /usr/share/plymouth/plymouthd.defaults & Set theme mask
+- sudo update-initramfs -u
+- sudo update-grub2
+
+#############
+# Follow US #
+#############
+
+[ Telegram ]
+- https://t.me/GT0Day
+
+[ Youtube ]
+- https://www.youtube.com/@GT0day    
